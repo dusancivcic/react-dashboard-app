@@ -1,0 +1,119 @@
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wineListContainer{
+    padding: 100px;
+    padding-left: 0px;
+    width: 100%;
+    max-width: 160rem;
+    margin-left: auto;
+}
+.wineListContainer h1{
+    font-size: 50px;
+    margin-bottom: 30px;
+    color: var(--gold-color);
+}
+.wineListCard{
+    background-color: #242424;
+}
+.wineListContainer h2 {
+    font-size: 50px;
+    margin-bottom: 30px;
+    color: var(--gold-color);
+}
+.wineListCard{
+    display: flex;
+    padding: 20px;
+    border-radius: 20px;
+}
+.wineListCardText{
+    padding-left: 20px;
+    height: fit-content;
+}
+.wineListGrid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.wineListCardText > h3{
+    font-size: 23px;
+    line-height: 26px;
+    font-weight: bold;
+    color: var(--gold-color);
+    margin-bottom: 15px;
+}
+.wineListCardText > p{
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 8px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+.wineRating > div{
+    width: 60px;
+    height: 25px;
+    background-color: var(--gold-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+.wineRating > div > p{
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+.wineRating{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.wineRating > p{
+    font-size: 14px;
+    line-height: 14px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+.wineListCardImage img{
+    max-height: 16.4rem;
+}
+.wineListCardImage{
+    width: 100%;
+    max-width: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+.wineSearch{
+    outline: none;
+    background-color: #242424;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 25px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    width: 100%;
+    max-width: 350px;
+    line-height: 20px;
+}
+.loadMoreButton{
+    padding: 10px 30px;
+    background-color: var(--gold-color);
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    border-radius: 25px;
+}
