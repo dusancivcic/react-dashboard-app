@@ -1,6 +1,7 @@
 import './WineList.css'
 import {useParams} from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import Spinner from '../spinner/Spinner'
 
 const WineList = () =>{
 
@@ -9,11 +10,16 @@ const WineList = () =>{
 
     const [limit, setLimit] = useState(21)
     const [searchWines, setSearchWines] = useState('')
+    const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
+        setLoading(true)
         fetch(`https://api.sampleapis.com/wines/${wineSort}`)
         .then(res => res.json())
         .then(data => setWineCards(data))
+        setTimeout(function(){
+            setLoading(false)
+        },400)
     }, [wineSort])
 
     const loadMore = () => {
@@ -45,31 +51,42 @@ const WineList = () =>{
 
             <input className='wineSearch' type="search" value={searchWines} onChange={e => searchWinesHandler(e)} />
             </header>
-            <div className='wineListGrid'>
+            
             {
-                wineCards?.slice(0, limit).filter(el => (
-                    el.wine.toLowerCase().includes(searchWines.toLowerCase().trim())
-                )).map(card=>(
-                    <div className='wineListCard'>
-                    <div className='wineListCardImage'>
-                        <img src={card.image} alt={card.wine} />
-                    </div>
-                    <div className='wineListCardText'> 
-                            <h3>{card.wine}</h3>
-                            <p>{card.winery}</p>
-                            <p>{card.location}</p>
-                            <div className='wineRating'>
-                                <div>
-                                    <p>{card.rating.average}</p>
+                loading ? (
+                    <Spinner />
+                ) : (
+                    <>
+                        <div className='wineListGrid'>
+                        {
+                            wineCards?.slice(0, limit).filter(el => (
+                                el.wine.toLowerCase().includes(searchWines.toLowerCase().trim())
+                            )).map(card=>(
+                                <div className='wineListCard'>
+                                <div className='wineListCardImage'>
+                                    <img src={card.image} alt={card.wine} />
                                 </div>
-                                <p>{card.rating.reviews}</p>
-                            </div>
+                                <div className='wineListCardText'>
+                                        <h3>{card.wine}</h3>
+                                        <p>{card.winery}</p>
+                                        <p>{card.location}</p>
+                                        <div className='wineRating'>
+                                            <div>
+                                                <p>{card.rating.average}</p>
+                                            </div>
+                                            <p>{card.rating.reviews}</p>
+                                        </div>
+                                    </div>
+                                </div>     
+                            ))
+                        }
                         </div>
-                    </div>     
-                ))
+                        <button className='loadMoreButton' onClick={loadMore}>Load more</button>
+                    </>
+                )
             }            
-            </div>
-                <button className='loadMoreButton' onClick={loadMore}>Load more</button>
+            
+            
         </div>
     )
 }

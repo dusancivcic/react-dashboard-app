@@ -137,3 +137,67 @@ input[type=number] {
     color: #fff;
     padding-left: 300px;
 }
+.homeContainer{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+}
+.homeContent{
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.homeFlex{
+    display: flex;
+    gap: 30px;
+}
+.homeCard{
+    position: relative;
+    display: flex;
+    aspect-ratio: 16/9;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+}
+.homeCardImage img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.homeCard h2{
+    font-size: 30px;
+    color: var(--gold-color);
+    position: relative;
+    z-index: 1;
+}
+.homeContainer h1{
+    font-size: 60px;
+    color: var(--gold-color);
+    margin-bottom: 50px;
+    text-align: center;
+}
+.homeCard:hover .homeCardImage img{
+    transform: scale(1.1);
+}

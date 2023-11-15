@@ -2,9 +2,69 @@
     border-radius: 30px;
     background-color: #242424;
     padding: 40px;
+    width: 100%;
 }
 .chart-grid{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 30px;
+}
+.chart-flex{
+    display: flex;
+    width: 100%;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+.chart-card canvas{
+    max-width: 100%;
+}
+.title-info h2{
+    margin-bottom: 0;
+    line-height: 100%;
+}
+.title-info{
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+.title-info > div > div{
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 150%;
+    width: 300px;
+    opacity: 0;
+    background-color: #242424;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 15px;
+    transition: opacity 0.3s ease;
+}
+.title-info > div > div p{
+    font-size: 16px;
+    font-weight: 600;
+}
+.title-info > div{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-color);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    position: relative;
+}
+.title-info > div > p{
+    color: var(--gold-color);
+    font-size: 30px;
+    line-height: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+    margin-top: -8px;
+}
+.title-info > div:hover > div{
+    opacity: 1;
 }

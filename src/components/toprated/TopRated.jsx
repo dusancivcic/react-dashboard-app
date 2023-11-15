@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import './TopRated.css'
+import Spinner from '../spinner/Spinner';
 
 const TopRated = () => {
+    
+    const [loading, setLoading] = useState(true)
 
     const [reds, setReds] = useState(null)
     const [whites, setWhites] = useState(null)
     const [rose, setRose] = useState(null)
 
     useEffect(() => {
+        setLoading(true)
         Promise.all([
             fetch("https://api.sampleapis.com/wines/reds").then(response => response.json()),
             fetch("https://api.sampleapis.com/wines/whites").then(response => response.json()),
@@ -16,8 +20,14 @@ const TopRated = () => {
             setReds(redsData);
             setWhites(whitesData);
             setRose(roseData);
+            setTimeout(function(){
+                setLoading(false)
+            },400)
         }).catch(error => {
             console.error('Error fetching data:', error);
+            setTimeout(function(){
+                setLoading(false)
+            },400)
         });
     }, []);
 
@@ -37,8 +47,14 @@ const TopRated = () => {
     return(
         <div className='wineListContainer'>
             <h2>Top 3 red wines</h2>
+
             <div className='wineListGrid'>
-                {topRed3Wines?.map((card) => (
+            {
+                loading ? (
+                    <Spinner />
+                ) : (
+                    
+                topRed3Wines?.map((card) => (
                 <div className='wineListCard'>
                     <div className='wineListCardImage'>
                         <img src={card.image} alt={card.wine} />
@@ -55,12 +71,22 @@ const TopRated = () => {
                         </div>
                     </div>
                 </div>   
-                ))}
-            </div>
+                    ))
+              
+                )
+            }
+              </div>
+
 
             <h2>Top 3 white wines</h2>
+
             <div className='wineListGrid'>
-                {topWhite3Wines?.map((card) => (
+            {
+                loading ? (
+                    <Spinner />
+                ) : (
+                    
+                topWhite3Wines?.map((card) => (
                 <div className='wineListCard'>
                     <div className='wineListCardImage'>
                         <img src={card.image} alt={card.wine} />
@@ -77,12 +103,21 @@ const TopRated = () => {
                         </div>
                     </div>
                 </div>   
-                ))}
-            </div>
+                    ))
+              
+                )
+            }
+              </div> 
 
             <h2>Top 3 rose wines</h2>
+
             <div className='wineListGrid'>
-                {topRose3Wines?.map((card) => (
+            {
+                loading ? (
+                    <Spinner />
+                ) : (
+                    
+                topRose3Wines?.map((card) => (
                 <div className='wineListCard'>
                     <div className='wineListCardImage'>
                         <img src={card.image} alt={card.wine} />
@@ -99,8 +134,13 @@ const TopRated = () => {
                         </div>
                     </div>
                 </div>   
-                ))}
-            </div>
+                    ))
+              
+                )
+            }
+              </div>
+
+              
         </div>
     )
 }

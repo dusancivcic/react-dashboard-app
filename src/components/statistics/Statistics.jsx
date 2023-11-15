@@ -102,7 +102,9 @@ console.log(whiteRatingCount)
         labels: ["Red wines", "White wines", "Rose wines"],
         datasets:[{
             data: [reds?.length,whites?.length,rose?.length],
-        }]
+            backgroundColor: ["#f21f1f", "#fbffeb", "#fa75bc"],
+        }],
+       
     }
 
     const barData = {
@@ -122,41 +124,71 @@ console.log(whiteRatingCount)
           label: 'Red wines',
           data: redRatingCount,
           fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
+          borderColor: '#f21f1f',
+          tension: 0.3
         },
         {
             label: 'White wines',
             data: whiteRatingCount,
             fill: false,
-            borderColor: 'rgb(75, 92, 192)',
-            tension: 0.1
+            borderColor: '#fbffeb',
+            tension: 0.3
         },
         {
             label: 'Rose wines',
             data: roseRatingCount,
             fill: false,
-            borderColor: 'rgb(75, 192, 92)',
-            tension: 0.1
+            borderColor: '#fa75bc',
+            tension: 0.3
         }]
       };
 
     return(
         <div className='wineListContainer'>
-            <div className='chart-grid'>
+            
+            <div className='chart-flex'>
                 <div className='chart-card'>
-                    <h2>Sort numbers</h2>
+                    <div className='title-info'>
+                      <h2>Sort numbers</h2>
+                      <div>
+                        <p>i</p>
+                        <div>
+                          <p>This pie chart is presenting how many wines does each sort have</p>
+                        </div>
+                      </div>
+                    </div>
                     <Pie data={pieData} />
                 </div>
                 <div className='chart-card'>
-                    <h2>Wines by country</h2>
-                    <Bar data={barData} />
-                </div>
-                <div className='chart-card'>
-                    <h2>Wine ratings</h2>
+                    <div className='title-info'>
+                      <h2>Wine ratings</h2>
+                      <div>
+                        <p>i</p>
+                        <div>
+                          <p>This graph is presenting the ratings of each sort, and how many wines from each sort is rated at one value</p>
+                        </div>
+                      </div>
+                    </div>
                     <Line data={LineData} />
                 </div>
             </div>
+
+            <div className='bar-chart'>
+                <div className='chart-card'>
+                  <div className='title-info'>
+                      <h2>Wines by country</h2>
+                      <div>
+                        <p>i</p>
+                        <div>
+                          <p>This bar chart is presenting from which countries are the wines, and how much wines is in each one of them</p>
+                        </div>
+                      </div>
+                    </div>
+                    <Bar data={barData} />
+                </div>
+            </div>
+
+           
         </div>
     )
 }
