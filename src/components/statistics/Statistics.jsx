@@ -81,9 +81,11 @@ console.log(whiteRatingCount)
       
 
     //PITAJ MARKA
+
+
+
     const countryCounts = wineDuplicatedLocations?.reduce((counts, country) => {
         const key = country || 'Unknown';
-    
         if (!counts[key]) {
           counts[key] = 1;
         } else {
@@ -92,8 +94,9 @@ console.log(whiteRatingCount)
   
         return counts;
       }, {});
-    //PITAJ MARKA OVAJ DIO SE ODNOSI NAJVISE 
-      const uniqueCountries = Object.keys(countryCounts || {});
+      console.log(countryCounts);
+      //PITAJ MARKA OVAJ DIO SE ODNOSI NAJVISE 
+      const uniqueCountries = Object.keys(countryCounts || {})
 
     const pieData = {
         labels: ["Red wines", "White wines", "Rose wines"],
@@ -126,14 +129,14 @@ console.log(whiteRatingCount)
             label: 'White wines',
             data: whiteRatingCount,
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(75, 92, 192)',
             tension: 0.1
         },
         {
             label: 'Rose wines',
             data: roseRatingCount,
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(75, 192, 92)',
             tension: 0.1
         }]
       };
