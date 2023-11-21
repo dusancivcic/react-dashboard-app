@@ -201,3 +201,20 @@ input[type=number] {
 .homeCard:hover .homeCardImage img{
     transform: scale(1.1);
 }
+
+@media only screen and (max-width: 600px) {
+    .homeFlex{
+        flex-direction: column;
+    }
+    .homeContainer{
+        height: auto;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .homeContainer h1{
+        font-size: 3.5rem;
+    }
+    .homeContainer{
+        padding: 5rem 3rem;
+    }
+}

@@ -2,6 +2,7 @@ import './WineList.css'
 import {useParams} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Spinner from '../spinner/Spinner'
+import Select from 'react-select'
 
 const WineList = () =>{
 
@@ -11,6 +12,9 @@ const WineList = () =>{
     const [limit, setLimit] = useState(21)
     const [searchWines, setSearchWines] = useState('')
     const [loading, setLoading] = useState(true)
+    const [title, setTitle] = useState(null)
+
+    const [selectedOption, setSelectedOption] = useState('average'); // Set the default value to null
 
     useEffect(()=>{
         setLoading(true)
@@ -20,36 +24,104 @@ const WineList = () =>{
         setTimeout(function(){
             setLoading(false)
         },400)
+        if(wineSort==='reds'){
+            setTitle('Red wines')
+        }else if(wineSort==='whites'){
+            setTitle('White wines')
+        }else if(wineSort==='rose'){
+            setTitle('Rose wines')
+        }
+        setSelectedOption(null)
     }, [wineSort])
+
+
 
     const loadMore = () => {
         setLimit(prevState => prevState + 21)
     }
 
-    const searchWinesHandler = e => {
-        setSearchWines(e.target.value)
-        console.log(searchWines);
+    const customStyles = {
+        control: (provided, state) => ({
+          ...provided,
+          backgroundColor: '#242424', // Set the background color here
+          border: 'none',
+          width: '150px',
+          fontSize: '15px',
+          color: '#fff!important',
+          fontFamily: 'Roboto',
+          borderRadius: '5px',
+          boxShadow: 'none',
+        }),
+        menu: (provided, state) => ({
+            ...provided,
+            backgroundColor: '#242424',
+        }),
+        option: (provided, state) => ({
+            ...provided,
+            color: '#fff',
+            border: 'none',
+            fontFamily: 'Roboto',
+            fontSize: '13px',
+            boxShadow: 'none',
+            backgroundColor: state.isSelected ? '#ceaf00' : '#242424', // Set the background color for the options
+            '&:hover': {
+              backgroundColor: '#ceaf00', // Set the background color on hover
+            },
+        }),
+        // Add more styles as needed for other elements like option, menu, etc.
+      };
+
+    const handleChange = (e) =>{
+        setSelectedOption(e);
+        if(e.value === 'average'){
+            const sortedByAverage = [...wineCards].sort((a, b) => {
+              
+                const averageA = a.rating.average;
+                const averageB = b.rating.average;
+              
+                return averageB - averageA;
+              });
+            setWineCards(sortedByAverage)
+        }else if(e.value === 'reviews'){
+            const sortedByReviews = [...wineCards].sort((a, b) => {
+                const extractNumber = (str) => {
+                  const match = str.match(/\d+/);
+                  return match ? parseInt(match[0], 10) : 0;
+                };
+              
+                const reviewsA = extractNumber(a.rating.reviews);
+                const reviewsB = extractNumber(b.rating.reviews);
+              
+                return reviewsB - reviewsA;
+              });
+              
+              setWineCards(sortedByReviews);
+        }else if(e.value === 'alphabet'){
+            const sortedByAlphabet = [...wineCards].sort((a, b) => a.wine.localeCompare(b.wine))
+            setWineCards(sortedByAlphabet)
+        }
     }
 
+    const searchWinesHandler = e => {
+        setSearchWines(e.target.value)
+    }
+
+    const options = [
+        { value: 'average', label: 'average' },
+        { value: 'reviews', label: 'reviews' },
+        { value: 'alphabet', label: 'alphabet' }
+      ]
+    
+    
 
     return(
         <div className='wineListContainer'>
             <header id='header'>
-
-            {
-                (wineSort==='reds') &&
-                <h1>Red wines</h1>
-            }
-            {
-                (wineSort==='whites') &&
-                <h1>White wines</h1>
-            }
-            {
-                (wineSort==='rose') &&
-                <h1>Rose wines</h1>
-            }
-
-            <input className='wineSearch' type="search" value={searchWines} onChange={e => searchWinesHandler(e)} />
+            <h1>{title}</h1>
+            <div className='search-filter-container'>
+                <Select onChange={handleChange} options={options} value={selectedOption} styles={customStyles}/>
+                <input className='wineSearch' type="search" value={searchWines} onChange={e => searchWinesHandler(e)} />
+            </div>
             </header>
             
             {

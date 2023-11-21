@@ -1,11 +1,16 @@
-.sidebar{
-    border-radius: 0px 30px 30px 0px;
+
+.sidebar-container{
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #242424;
     height: 100%;
+    z-index: 999999;
+}
+.sidebar{
+    border-radius: 0px 30px 30px 0px;
+    background-color: #242424;
     padding: 0px 30px;
+    height: 100%;
     padding-top: 50px;
     display: flex;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
@@ -13,8 +18,11 @@
     overflow: hidden;
     transition: max-width 0.3s ease;
 }
-.sidebar:hover{
-    max-width: 400px;
+
+@media only screen and (min-width: 600px) {
+    .sidebar:hover{
+        max-width: 400px;
+    }
 }
 .sidebar ul{
     display: flex;
@@ -37,4 +45,57 @@
 .sidebar ul li img{
     display: block;
     max-width: 40px;
+}
+@media only screen and (max-width: 600px) {
+    .sidebar{
+        max-width: fit-content;
+        overflow: visible;
+        padding-bottom: 5rem;
+        box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.4);
+    }
+    .hamburger{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #242424;
+        position: absolute;
+        top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: -6rem;
+        box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.4);
+        transition: transform 0.6s ease-in-out;
+    }
+    .hamburger div{
+        width: 2rem;
+        height: 0.1rem;
+        background-color: #fff;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+     
+    }
+    .hamburger div::after{
+        position: absolute;
+        content: "";
+        right: 0;
+        border-top: 1px solid #fff;
+        border-right: 1px solid #fff;
+        width: 1.1rem;
+        height: 1.1rem;
+        transform: rotate(45deg);
+    }
+    .hamburger.active{
+        transform: rotate(180deg);
+    }
+    .sidebar-container{
+        height: fit-content;
+        transform: translateX(-26rem);
+        transition: transform 0.5s ease-in-out;
+    }
+    .sidebar-container.active{
+        transform: translateX(0rem);
+    }
 }

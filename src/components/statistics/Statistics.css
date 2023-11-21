@@ -68,3 +68,25 @@
 .title-info > div:hover > div{
     opacity: 1;
 }
+@media only screen and (max-width: 1280px) {
+    .chart-flex{
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .title-info h2{
+        font-size: 24px;
+    }
+    .title-info > div {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .title-info > div > p {
+        color: var(--gold-color);
+        font-size: 2.1rem;
+    }
+    .chart-card{
+        padding: 3rem;
+    }
+}

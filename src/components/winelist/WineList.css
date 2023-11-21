@@ -5,11 +5,11 @@
 }
 
 .wineListContainer{
-    padding: 100px;
+    padding: 10rem;
     padding-left: 0px;
     width: 100%;
-    max-width: 160rem;
-    margin-left: auto;
+    padding-left: 30rem;
+    padding-right: 10rem;
 }
 .wineListContainer h1{
     font-size: 50px;
@@ -117,4 +117,33 @@
     margin: 0 auto;
     margin-top: 50px;
     border-radius: 25px;
+}
+.search-filter-container{
+    display: flex;
+    gap: 30px;
+}
+.css-1dimb5e-singleValue{
+    color: #fff!important;
+}
+
+@media only screen and (max-width: 1500px) {
+    .wineListGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .wineListGrid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    #header{
+        flex-direction: column;
+        margin-bottom: 5rem;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .wineListContainer{
+        padding: 5rem 3rem;
+    }
 }
